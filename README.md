@@ -64,6 +64,3 @@ public:
     ADDMEMBER(QString,password,"");
 };
 接下来使用仅需对JsonInfoLoginSend的m_userName、m_password赋值即可直接通过toJson()获取QJsonObject对象,当然也可以通过转json包直接fromJson得到成员变量对应赋值。
-————————————————
-版权声明：本文为CSDN博主「先森不在忆」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/qq821181867/article/details/114610762
