@@ -1,5 +1,6 @@
 # Qt-JsonInfoBase
 快速封装一个可以直接转QJsonObject的类
+
 利用Q_PROPERTY自定义属性性质，可进行统一封装转QJsonObject的类
 
 原理：
