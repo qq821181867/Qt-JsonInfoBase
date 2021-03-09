@@ -12,8 +12,9 @@ class testObj : QObject
     Q_OBJECT
 public:
     Q_PROPERTY(QString name MEMBER m_name)
-    m_name;
+    QString m_name;
 }
+
 这样我们就声明了一个name属性，类型为QString，并且绑定了私有成员m_name;
 
 2.这时候我们通过继承的QObject中metaObject()函数获取对应元对象;
@@ -33,11 +34,11 @@ QList<QByteArray> JsonInfoBase::getPropertyNames() const
     listPropertyNames.removeAll("objectName");//移除自带的
     return listPropertyNames;
 }
- 
+
 bool JsonInfoBase::fromJson(const QJsonObject &obj)
 {
     QList<QByteArray> listPropertyNames = getPropertyNames();
- 
+
     foreach (const QByteArray &name, listPropertyNames)
     {
         if(!obj.contains(name))
@@ -47,9 +48,10 @@ bool JsonInfoBase::fromJson(const QJsonObject &obj)
         }
         setProperty(name,obj.value(name));
     }
- 
+
     return true;
 }
+
 相对应的toJson也可以做类似的封装;
 
 5.为了方便可将声明自定义属性及声明私有成员变量做一个宏，增加使用便捷性，如下：
@@ -64,6 +66,7 @@ public:
     ADDMEMBER(QString,userName,"");
     ADDMEMBER(QString,password,"");
 };
+
 接下来使用仅需对JsonInfoLoginSend的m_userName、m_password赋值即可直接通过toJson()获取QJsonObject对象,当然也可以通过转json包直接fromJson得到成员变量对应赋值。
 
 
